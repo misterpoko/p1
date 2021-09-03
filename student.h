@@ -1,8 +1,9 @@
-#include <iostream>
-#include <string>
+#ifndef STUDENT_H
+#define STUDENT_H
+
 using namespace std;
 
-class Student {
+class student {
 private:
         string fullName;
         string username;
@@ -21,3 +22,5 @@ public:
         int getFinalGrade();
         double getOverallGrade();
 };
+
+#endif

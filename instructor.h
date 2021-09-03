@@ -1,6 +1,9 @@
-#include "Student.h"
+#ifndef INSTRUCTOR_H
+#define INSTRUCTOR_H
 
-class Instructor
+#include "student.h"
+
+class instructor
 {
 private:
         string fullName;
@@ -8,8 +11,10 @@ private:
 public:
         bool login(string username, string password);
         string getInstructorName();
-        Student getStudent(string username);
-        Student getMinStudent(int gradeType);
-        Student getMaxStudent(int gradeType);
+        student getStudent(string username);
+        student getMinStudent(int gradeType);
+        student getMaxStudent(int gradeType);
         double getAvg(int gradeType);
 };
+
+#endif
