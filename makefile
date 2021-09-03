@@ -16,6 +16,4 @@ run: compile
 	./main
 
 clean:
-	rm main.o main
-	rm student.o student
-	rm instructor.o instructor
+	rm main.o main student.o instructor.o
