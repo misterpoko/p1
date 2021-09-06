@@ -11,9 +11,9 @@ private:
 public:
         bool login(string username, string password);
         string getInstructorName();
-        student getStudent(string username);
-        student getMinStudent(int gradeType);
-        student getMaxStudent(int gradeType);
+        Student getStudent(string username);
+        Student getMinStudent(int gradeType);
+        Student getMaxStudent(int gradeType);
         double getAvg(int gradeType);
 };
 

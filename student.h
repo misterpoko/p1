@@ -1,10 +1,10 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
+
 using namespace std;
 
-class student {
-private:
+class Student {
         string fullName;
         string username;
         string password;
@@ -12,15 +12,16 @@ private:
         int quizGrade;
         int midtermGrade;
         int finalGrade;
-
-public:
-        bool login(string username, string password);
-        string getStudentName();
         int getProjectGrade();
         int getQuizGrade();
         int getMidtermGrade();
         int getFinalGrade();
         double getOverallGrade();
+        string getStudentName();
+
+	Student();
+	Student(string fn, string ln, string, string pw, int fg, int mg, int qg, int pg);
+        bool login(string username, string password);
 };
 
 #endif
