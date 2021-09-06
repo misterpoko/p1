@@ -5,10 +5,10 @@
 #include "instructor.h"
 #include <string>
 #include <sstream>
+#include <unistd.h>
 
 using namespace std;
-
-Student *theStudents[20];
+Student theStudents[20];
 instructor theInstructors[3];
 bool isInstructor = 0;
 bool isLogin = 0;
@@ -17,9 +17,17 @@ int initialize();
 void getWord(string *toChange, FILE * stream);
 int sti (string number);
 
+void printStudent(Student person) {
+	cout << person.username << " " << person.password << " " << person.getStudentName() << " " << person.getProjectGrade() << " " << person.getQuizGrade() << " " << person.getMidtermGrade() << " " << person.getFinalGrade() << endl;
+} // printStudent
+	
+
 int main() {
-	Student("tim", "hansen", "nop", "pw", 96, 54 ,37, 26);
 	initialize();
+	for (int i = 0; i < 20; i++) {
+		printStudent(theStudents[i]);
+		cout << endl;
+	} // for
         return 0;
 } // main
 
@@ -46,50 +54,75 @@ int initialize() {
 	int quizGrade;
 	int projectGrade;
 	int j = 0;
+	char c;
 	while (!feof(sFile)) {
 		for (int i = 0; i < 8; i++) {
+			while ((c = fgetc(sFile)) != ' ' && c != '\t' && c != '\n' && !feof(sFile)) {
+				temp = temp + c;
+			} // while
 			switch(i) {
-				case 0: 
-					getWord(&firstName, sFile);
+				case 0:
+					username = temp;
+					break;
 				case 1:
-					getWord(&lastName, sFile);
-				case 2:
-					getWord(&username, sFile);
+					password = temp;
+					break;
+				case 2: 
+					firstName = temp;
+					break;
 				case 3:
-					getWord(&password, sFile);
-				case 4: 
-					getWord(&temp, sFile);
-					finalGrade = sti(temp);
-					temp = "";
-				case 5:
-					getWord(&temp, sFile);
-					midtermGrade = sti(temp);
-					temp = "";
-				case 6:
-					getWord(&temp, sFile);
-					quizGrade = sti(temp);
-					temp = "";
-				case 7:
-					getWord(&temp, sFile);
+					lastName = temp;
+					break;
+				case 4:
 					projectGrade = sti(temp);
-					temp = "";
+					break;
+				case 5:
+					quizGrade = sti(temp);
+					break;
+				case 6:
+					midtermGrade = sti(temp);
+					break;
+				case 7: 
+					finalGrade = sti(temp);
+					break;
 			} // switch
+			temp = "";
 		} // for
-//		theStudents[j++] = new Student(firstName, lastName, username, password, finalGrade, midtermGrade, quizGrade, projectGrade);
+		theStudents[j++] = Student(firstName, lastName, username, password, finalGrade, midtermGrade, quizGrade, projectGrade);
+	} // while
+	fclose(sFile);	
+	j = 0;
+	sFile = fopen("./instructors.txt", "r");
+	if (sFile == NULL) {
+		cout << "instructors.txt does not exist" << endl;
+		return 0;
+	} // if
+	while (!feof(sFile)) {
+		for (int i = 0; i < 4; i++) {
+			while ((c = fgetc(sFile)) != ' ' && c != '\t' && c != '\n' && !feof(sFile)) {
+				temp = temp + c;
+			} // while
+			switch(i) {
+				case 0:
+					username = temp;
+					break;
+				case 1:
+					password = temp;
+					break;
+				case 2: 
+					firstName = temp;
+					break;
+				case 3:
+					lastName = temp;
+					break;
+			} // switch
+			temp = "";
+		} // for
+		//add instructor constructor lol
 	} // while
 	fclose(sFile);
-	
-	// do this for instructors
-	//
 	return 1;
 } // initialize
-
-void getWord(string *toChange, FILE *stream) {
-	char c;
-	while ((c =fgetc(stream)) != '\0' || c != ' ')  {
-		*toChange = *toChange + c;
-	} // for
-} // getWord
 
 /**
  * This method converts strings to ints.
