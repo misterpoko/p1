@@ -1,53 +1,47 @@
 #include <iostream>
 #include <string>
-using namespace std;
+#include "instructor.h"
 
-class student {
-        string fullName;
-        string username;
-        string password;
-        int finalGrade;
-        int midtermGrade;
-        int quizGrade;
-        int projectGrade;
+string fName;
+string uName;
+string pw;
 
-        string getStudentName() {
-                return fullName;
-        } // getStudentName
-        int getProjectGrade() {
-                return projectGrade;
-        } // getProjectGrade
-        int getQuizGrade() {
-                return quizGrade;
-        } // getQuizGrade
-        int getMidtermGrade() {
-                return midtermGrade;
-        } // getMidtermGrade
-        int getFinalGrade() {
-                return finalGrade;
-        } // getFinalGrade
-        double getOverallGrade() {
-                double sum = 0;
-                sum += (.3 * projectGrade);
-                sum += (.1 * quizGrade);
-                sum += (.2 * midtermGrade);
-                sum += (.4 * finalGrade);
-                return sum;
-        } // getOverallGrade
-        public:
-        student(string fn, string ln, string un, string pw, int fg, int mg, int qg, int pg) {
-                fullName = fn + " " + ln;
-                username = un;
-                password = pw;
-                finalGrade = fg;
-                midtermGrade = mg;
-                quizGrade = qg;
-                projectGrade = pg;
-        } // student;
-        bool login(string un, string pw) {
-                if (!username.compare(un) && !password.compare(pw)) {
-                        return true;
-                } // if
-                return false;
-        } // login
-}; // student
+/*
+ * GradeTypes:
+ * project -1
+ * quiz    -2
+ * midterm -3
+ * final   -4
+ * overall -5
+ */
+
+Instructor::Instructor(string username, string password, string firstName, string lastName) {
+	uName = username;
+	pw = password;
+	fName = firstName + " " + lastName;
+} // Instructor
+
+string getInstructorName() {
+	return fName;
+} // getInstructorName
+
+Student getStudent(string username) {
+	
+} // getStudent
+
+Student getMinStudent(int gradeType) {
+
+} // getMinStudent
+
+Student getMaxStudent(int gradeType) {
+
+} // getMaxStudent
+
+double getAvg(int gradeType);
+
+bool login(string username, string password) {
+	if (username == uName && password == pw) {
+		return 1;
+	} // if
+	return 0;
+} // login
