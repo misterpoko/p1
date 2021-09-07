@@ -3,9 +3,11 @@
 
 #include "student.h"
 
-class instructor
+class Instructor
 {
 	public:
+		Instructor();
+		Instructor(string one, string two, string three, string four);
         	string fullName;
         	bool login(string username, string password);
         	string getInstructorName();

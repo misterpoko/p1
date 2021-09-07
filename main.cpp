@@ -8,12 +8,12 @@
 #include <unistd.h>
 
 using namespace std;
-Student theStudents[20];
-instructor theInstructors[3];
+Student theStudents[100];
+Instructor theInstructors[3];
 bool isInstructor = 0;
 bool isLogin = 0;
 
-int initialize();
+int initialize(char *argv1, char *argv2);
 void getWord(string *toChange, FILE * stream);
 int sti (string number);
 
@@ -22,8 +22,8 @@ void printStudent(Student person) {
 } // printStudent
 	
 
-int main() {
-	initialize();
+int main(int argc, char **argv) {
+	initialize(argv[1], argv[2]);
 	for (int i = 0; i < 20; i++) {
 		printStudent(theStudents[i]);
 		cout << endl;
@@ -36,10 +36,10 @@ int main() {
  * Failure should shortcircuit the program and cause an error.
  * @return 1 if worked and 0 if didnt initialize properly
  */
-int initialize() {
+int initialize(char *argv1, char *argv2) {
 	FILE * sFile;
 	
-	sFile = fopen("./students.txt", "r");
+	sFile = fopen(argv1, "r");
 	if (sFile == NULL) {
 		cout << "students.txt does not exist" << endl;
 		return 0;
@@ -92,7 +92,7 @@ int initialize() {
 	} // while
 	fclose(sFile);	
 	j = 0;
-	sFile = fopen("./instructors.txt", "r");
+	sFile = fopen(argv2, "r");
 	if (sFile == NULL) {
 		cout << "instructors.txt does not exist" << endl;
 		return 0;
