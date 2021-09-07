@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 using namespace std;
-Student theStudents[100];
+Student theStudents[20];
 Instructor theInstructors[3];
 bool isInstructor = 0;
 bool isLogin = 0;
@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
  * Failure should shortcircuit the program and cause an error.
  * @return 1 if worked and 0 if didnt initialize properly
  */
-int initialize(char *argv1, char *argv2) {
+int initialize(char *argv2, char *argv1) {
 	FILE * sFile;
 	
 	sFile = fopen(argv1, "r");

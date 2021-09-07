@@ -13,7 +13,7 @@ instructor.o: instructor.cpp
 	g++ -o instructor.o $(EV) -c instructor.cpp
 
 run: compile
-	./main ./students.txt ./instructors.txt
+	./main ./instructors.txt ./students.txt
 
 clean:
 	rm main.o student.o instructor.o main

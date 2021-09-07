@@ -5,7 +5,7 @@
 string fName;
 string uName;
 string pw;
-Student people[100];
+Student people[20];
 
 /*
  * GradeTypes:
@@ -46,5 +46,8 @@ bool login(string username, string password) {
 	return 0;
 } // login
 
-void getStudentArray(Student* firstStudent) {
+void getStudentArray(Student firstStudent[20]) {
+	for(int i = 0; i < 20; i++) {
+		people[i] = firstStudent[i];
+	} // for
 } // getStudentArray
