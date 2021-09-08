@@ -30,6 +30,14 @@ int main(int argc, char **argv) {
         return 0;
 } // main
 
+void printStudent(Student person) {
+	cout << endl;
+	cout << "Student name: " << person.fullName << endl << '\t' << "Project " << person.getProjectGrade() << "%" << endl;
+	cout << '\t' << "Quiz    " << person.getQuizGrade() << "%" << endl << '\t' << "Midterm " << person.getMidtermGrade();
+	cout << "%" << endl << '\t' << "Final   "  << person.getFinalGrade() << "%" << endl << '\t' << "Overall ";
+	cout << person.getOverallGrade() << "%" << endl << endl;
+} // printStudent
+
 void printOption2(int gradeType) {
 	string type;
 	Student min = theInstructors[isInstructor].getMinStudent(gradeType);
@@ -37,6 +45,8 @@ void printOption2(int gradeType) {
 	int minGrade;
 	int maxGrade;
 	double avgGrade = theInstructors[isInstructor].getAvg(gradeType);
+	isLogin = 0;
+	isInstructor = 0;
 	switch (gradeType) {
 		case 1:
 			type = "Project";
@@ -108,11 +118,7 @@ void instructorOption1() {
 		instructorOption1();
 		return;
 	} else {
-		cout << endl;
-		cout << "Student name: " << inQuestion.fullName << endl << '\t' << "Project " << inQuestion.getProjectGrade() << "%" << endl;
-		cout << '\t' << "Quiz    " << inQuestion.getQuizGrade() << "%" << endl << '\t' << "Midterm " << inQuestion.getMidtermGrade();
-		cout << "%" << endl << '\t' << "Final   "  << inQuestion.getFinalGrade() << endl << '\t' << "Overall ";
-		cout << inQuestion.getOverallGrade() << "%" << endl << endl;
+		printStudent(inQuestion);
 		isInstructor = 0;
 		isLogin = 0;
 		promptUser();
@@ -133,6 +139,18 @@ void promptInstructor() {
 		promptInstructor();
 	} // if
 } // promptInstructor
+
+void promptStudent(Student theStudent) {
+	string temp;
+	cout << "Do you want to view grades (y/n)? ";
+	cin >> temp;
+	if (!temp.compare("y")) {
+		printStudent(theStudent);
+		promptUser();
+	} else { 
+		promptUser();
+	} // if
+} // promptStudent
 
 void promptLogin(int isInstructor) {
 	string un;
@@ -163,6 +181,10 @@ void promptLogin(int isInstructor) {
 		for (int i = 0; i < 20; i++) {
 			if (un == theStudents[i].username) {
 				isLogin = theStudents[i].login(un, pw);
+				if (isLogin) {
+					promptStudent(theStudents[i]);
+					return;
+				} // if
 			} // if
 		} // for
 		if (!isLogin) {
