@@ -254,7 +254,7 @@ void promptUser() {
 	} else if (!userType.compare("3")) {
 		return;
 	} else {
-		cout << endl << "Invalid option. Please enter a valid option." << endl << endl;
+		cout << "Invalid option. Please enter a valid option." << endl << endl;
 		promptUser();
 		return;
 	} // if		
