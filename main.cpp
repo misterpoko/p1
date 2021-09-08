@@ -173,7 +173,7 @@ void promptLogin(int isInstructor) {
 				isLogin = theInstructors[i].login(un, pw);
 				if (isLogin) {
 					isInstructor = i;
-					cout << "You are now logged in as instructor " << theInstructors[i].fName << endl << endl;
+					cout << "You are now logged in as instructor " << theInstructors[i].fName << "\n\n";
 					promptInstructor();
 					return;
 				} // if
@@ -189,6 +189,7 @@ void promptLogin(int isInstructor) {
 			if (un == theStudents[i].username) {
 				isLogin = theStudents[i].login(un, pw);
 				if (isLogin) {
+					cout << "You are now logged in as student " << theStudents[i].fullName << endl << endl;
 					promptStudent(theStudents[i]);
 					return;
 				} // if
@@ -343,6 +344,9 @@ int initialize(char *argv2, char *argv1) {
  * @return the numerical value of the string.
  */
 int sti(string number) {
+	if (!isdigit(number.at(0))) {
+		return -243;
+	} // if
 	stringstream ss;
 	int num;
 	ss << number;
