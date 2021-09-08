@@ -17,6 +17,7 @@ Student *people;
  */
 
 Instructor::Instructor(){}
+
 /**
  * Instructor constructor 
  * @param sting username is instructor's username 
@@ -31,6 +32,7 @@ Instructor::Instructor(string username, string password, string firstName, strin
 	fName = firstName + " " + lastName;
 	people = persons;
 } // Instructor
+
 /**
  * getter method for instructor's name
  * @return the student's full name 
@@ -51,6 +53,7 @@ Student Instructor::getStudent(string username) {
 	} // for
 	return Student("Not","Exist", "noUN", "pw", -1, -1, -1, -1);
 } // getStudent
+
 /** 
  * student getter for student minimum grade 
  * @param int gradeType is student's type of grade (quiz grade, project grade, midterm grade, final grade, overall grade)
@@ -97,6 +100,7 @@ Student Instructor::getMinStudent(int gradeType) {
 	} // switch
 	return min;
 } // getMinStudent
+
 /** 
  * student getter for student's max grades
  * @param int gradeType is student's type of grade (quiz grade, project grade, midterm grade, final grade, overall grade)
@@ -182,10 +186,10 @@ double Instructor::getAvg(int gradeType) {
 } // getAvg
 
 /** 
- *  * boolean operation for instructor login 
- *   * @param string username is instructor's username 
- *    * @return 1 if username and password is inputted properly and 0 if it isn't
- *     */
+ * boolean operation for instructor login 
+ * @param string username is instructor's username 
+ * @return 1 if username and password is inputted properly and 0 if it isn't
+ */
 bool Instructor::login(string username, string password) {
 	if (username == uName && password == pw) {
 		return 1;
