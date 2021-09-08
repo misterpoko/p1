@@ -19,6 +19,10 @@ int sti (string number);
 
 void promptUser();
 void promptLogin(int isInstructor);
+void promptInstructor();
+void promptStudent();
+void instructorOption1();
+void instructorOption2();
 
 int main(int argc, char **argv) {
 	initialize(argv[1], argv[2]);
@@ -26,36 +30,98 @@ int main(int argc, char **argv) {
         return 0;
 } // main
 
+void instructorOption1() {
+	string su = ""; // student username
+	cout << endl << "Enter student username to view grades: ";
+	cin >> su;
+	Student inQuestion = theInstructors[isInstructor].getStudent(su);
+	if (inQuestion.username != su) {
+		cout << endl << "Student username is not valid" << endl;
+		instructorOption1();
+		return;
+	} else {
+		cout << endl;
+		cout << "Student name: " << inQuestion.fullName << endl << '\t' << "Project " << inQuestion.getProjectGrade() << "%" << endl;
+		cout << '\t' << "Quiz    " << inQuestion.getQuizGrade() << "%" << endl << '\t' << "Midterm " << inQuestion.getMidtermGrade();
+		cout << "%" << endl << '\t' << "Final   "  << inQuestion.getFinalGrade() << endl << '\t' << "Overall ";
+		cout << inQuestion.getOverallGrade() << "%" << endl << endl;
+		isInstructor = 0;
+		isLogin = 0;
+		promptUser();
+	} // if
+} // instructorOption1
+
+void promptInstructor() {
+	string option;
+	cout << "Query options," << endl << '\t' << "1 - view grades of a student" << endl << '\t' << "2 - view stats" << endl;
+	cout << "Enter option number: ";
+	cin >> option;
+	if (!option.compare("1")) {
+		instructorOption1();
+	} else if (!option.compare("2")) {
+		//something
+	} else {
+		cout << endl << "Invalid option. Please enter a valid option." << endl << endl;
+		promptInstructor();
+	} // if
+} // promptInstructor
+
 void promptLogin(int isInstructor) {
 	string un;
 	string pw;
 	cout << "Enter credentials to login," << endl << '\t' << "Enter username: ";
 	cin >> un;
-	cout << endl << '\t' << "Enter password: ";
+	cout << '\t' << "Enter password: ";
 	cin >> pw;
-	cout << endl << endl;
+	cout << endl;
+	if (isInstructor) {
+		for (int i = 0; i < 3; i++) {
+			if (un == theInstructors[i].uName) {
+				isLogin = theInstructors[i].login(un, pw);
+				if (isLogin) {
+					isInstructor = i;
+					cout << "You are now logged in as instructor " << theInstructors[i].fName << endl << endl;
+					promptInstructor();
+					return;
+				} // if
+			} // if
+		} // for
+		if (!isLogin) {
+			cout << "Login as instructor failed." << endl << endl;
+			promptLogin(1);
+			return;
+		} // if
+	} else {
+		for (int i = 0; i < 20; i++) {
+			if (un == theStudents[i].username) {
+				isLogin = theStudents[i].login(un, pw);
+			} // if
+		} // for
+		if (!isLogin) {
+			cout << "Login as student failed." << endl << endl;
+		} // if
+	} // if
+	if (!isLogin) {
+		promptUser();
+	} // if
 } // promptLogin
 		
 
 void promptUser() {
-	char userType;
+	string userType;
 	cout << "User types," << endl << '\t' << "1 - Instructor" << endl << '\t' << "2 - Student" << endl << "Select a login user type or enter 3 to exit: ";
 	cin >> userType;
-	switch (userType) {
-		case '1':
-			//instructor
-			break;
-		case '2':
-			//student
-			break;
-		case '3':
-			//logout
-			break;
-		default:
-			cout << endl << "Invalid option. Please enter a valid option." << endl << endl;
-			promptUser();
-			return;
-	} // switch		
+	if (!userType.compare("1")) {
+		promptLogin(1);
+	} else if (!userType.compare("2")) {
+		promptLogin(0);
+	} else if (!userType.compare("3")) {
+		return;
+	} else {
+		cout << endl << "Invalid option. Please enter a valid option." << endl << endl;
+		promptUser();
+		return;
+	} // if		
 } // promptUser
 
 int initializeInstructor(char *argv2) {
