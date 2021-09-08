@@ -15,7 +15,6 @@ class Instructor
         	Student getMinStudent(int gradeType);
         	Student getMaxStudent(int gradeType);
         	double getAvg(int gradeType);
-		void getStudentArray(Student firstStudents[20]);
 };
 
 #endif

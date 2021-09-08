@@ -160,9 +160,3 @@ bool login(string username, string password) {
 	} // if
 	return 0;
 } // login
-
-void getStudentArray(Student firstStudent[20]) {
-	for(int i = 0; i < 20; i++) {
-		people[i] = firstStudent[i];
-	} // for
-} // getStudentArray
