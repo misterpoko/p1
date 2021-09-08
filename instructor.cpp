@@ -17,18 +17,32 @@ Student *people;
  */
 
 Instructor::Instructor(){}
-
+/**
+ * Instructor constructor 
+ * @param sting username is instructor's username 
+ * @param string password is instructor's password
+ * @param string firstName is instructor's first name 
+ * @param string lastName is instructor's last name 
+ * @param Student *person is the student array 
+ */
 Instructor::Instructor(string username, string password, string firstName, string lastName, Student *persons) {
 	uName = username;
 	pw = password;
 	fName = firstName + " " + lastName;
 	people = persons;
 } // Instructor
-
+/**
+ * getter method for instructor's name
+ * @return the student's full name 
+ */
 string Instructor::getInstructorName() {
 	return fName;
 } // getInstructorName
 
+/** 
+ * student getter for student username 
+ * @param string username is students username 
+ */
 Student Instructor::getStudent(string username) {
 	for (int i = 0; i < 20; i++) {
 		if(!(people[i].username.compare(username))) {
@@ -37,7 +51,11 @@ Student Instructor::getStudent(string username) {
 	} // for
 	return Student("Not","Exist", "noUN", "pw", -1, -1, -1, -1);
 } // getStudent
-
+/** 
+ * student getter for student minimum grade 
+ * @param int gradeType is student's type of grade (quiz grade, project grade, midterm grade, final grade, overall grade)
+ * @return the minimum of all students grades 
+ */
 Student Instructor::getMinStudent(int gradeType) {
 	Student min = people[0];
 	switch(gradeType) {
@@ -79,7 +97,11 @@ Student Instructor::getMinStudent(int gradeType) {
 	} // switch
 	return min;
 } // getMinStudent
-
+/** 
+ * student getter for student's max grades
+ * @param int gradeType is student's type of grade (quiz grade, project grade, midterm grade, final grade, overall grade)
+ * @return the max of all students grades 
+ */
 Student Instructor::getMaxStudent(int gradeType) {
 	Student max = people[0];
 	switch(gradeType) {
@@ -122,6 +144,11 @@ Student Instructor::getMaxStudent(int gradeType) {
 	return max;
 } // getMaxStudent
 
+/** 
+ * student getter for average grade for all students
+ * @param int gradeType is student's type of grade (quiz grade, project grade, midterm grade, final grade, overall grade)
+ * @return sum of grades dived by the amount of students (20). 
+ */
 double Instructor::getAvg(int gradeType) {
 	double sum = 0.0;
 	switch (gradeType) {
@@ -154,6 +181,11 @@ double Instructor::getAvg(int gradeType) {
 	return sum/20;
 } // getAvg
 
+/** 
+ *  * boolean operation for instructor login 
+ *   * @param string username is instructor's username 
+ *    * @return 1 if username and password is inputted properly and 0 if it isn't
+ *     */
 bool Instructor::login(string username, string password) {
 	if (username == uName && password == pw) {
 		return 1;
