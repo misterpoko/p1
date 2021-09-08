@@ -122,8 +122,37 @@ Student getMaxStudent(int gradeType) {
 } // getMaxStudent
 
 double getAvg(int gradeType) {
-	return 0.0;
-} // 
+	double sum = 0.0;
+	switch (gradeType) {
+		case 1:
+			for (int i = 0; i < 20; i++) {
+				sum += people[i].getProjectGrade();
+			} // for
+			break;
+		case 2:
+			for (int i = 0; i < 20; i++) {
+				sum += people[i].getQuizGrade();
+			} // for
+			break;
+		case 3:
+			for (int i = 0; i < 20; i++) {
+				sum += people[i].getMidtermGrade();
+			} // for
+			break;
+		case 4:
+			for (int i = 0; i < 20; i++) {
+				sum += people[i].getFinalGrade();
+			} // for
+			break;
+		case 5:
+			for (int i = 0; i < 20; i++) {
+				sum += people[i].getOverallGrade();
+			} // for
+			break;
+	} // switch
+	return sum/20;
+} // getAvg
+
 bool login(string username, string password) {
 	if (username == uName && password == pw) {
 		return 1;
