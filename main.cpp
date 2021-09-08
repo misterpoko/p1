@@ -239,7 +239,9 @@ void promptLogin(int isInstructor) {
 	} // if
 } // promptLogin
 		
-
+/**
+ * This prompts the user with the initial option of the ability to log in to a student or an instructor.
+ */
 void promptUser() {
 	string userType;
 	cout << "User types," << endl << '\t' << "1 - Instructor" << endl << '\t' << "2 - Student" << endl << "Select a login user type or enter 3 to exit: ";
@@ -258,6 +260,11 @@ void promptUser() {
 	} // if		
 } // promptUser
 
+/**
+ * This takes in a char array and makes it into a file which initializes the instructor array instance variable for future use.
+ * @param argv2 the first argument passed through main.
+ * @return whether or not the instructorsarray were successfully initialized. 0 is failure 1 is success
+ */
 int initializeInstructor(char *argv2) {
 	FILE * iFile;
 	int j = 0;
@@ -302,6 +309,11 @@ int initializeInstructor(char *argv2) {
 	return 1;
 } // initializeInstructor
 
+/**
+ * This takes in a char array and makes it into a file which initializes the student array instance variable for future use.
+ * @param argv1 the second argument passed through main.
+ * @return whether or not the students sarray were successfully initialized. 0 is failure 1 is success
+ */
 int initializeStudent(char *argv1) {
 	FILE * sFile;	
 	sFile = fopen(argv1, "r");
