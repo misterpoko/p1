@@ -182,7 +182,7 @@ void promptLogin(int isInstructor) {
 		} // for
 		if (!isLogin) {
 			cout << "Login as instructor failed." << endl << endl;
-			promptLogin(1);
+			promptUser();
 			return;
 		} // if
 	} else {
@@ -198,6 +198,8 @@ void promptLogin(int isInstructor) {
 		} // for
 		if (!isLogin) {
 			cout << "Login as student failed." << endl << endl;
+			promptUser();
+			return;
 		} // if
 	} // if
 	if (!isLogin) {
