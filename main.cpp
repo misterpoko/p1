@@ -8,8 +8,8 @@
 #include <unistd.h>
 
 using namespace std;
-Student theStudents[20];
-Instructor theInstructors[3];
+Student theStudents[20];//student array
+Instructor theInstructors[3];//instructors array 
 bool isInstructor = 0; //which instructor it is.
 bool isLogin = 0;
 
@@ -48,6 +48,7 @@ int main(int argc, char **argv) {
  * @param person The student in question
  */
 void printStudent(Student person) {
+//this is formatting for print statements
 	cout << endl;
 	cout << "Student name: " << person.fullName << endl << '\t' << "Project " << person.getProjectGrade() << "%" << endl;
 	cout << '\t' << "Quiz    " << person.getQuizGrade() << "%" << endl << '\t' << "Midterm " << person.getMidtermGrade();
@@ -68,6 +69,7 @@ void printOption2(int gradeType) {
 	double avgGrade = theInstructors[isInstructor].getAvg(gradeType);
 	isLogin = 0;
 	isInstructor = 0;
+	//switch cases for assignment grades 
 	switch (gradeType) {
 		case 1:
 			type = "Project";
@@ -90,12 +92,15 @@ void printOption2(int gradeType) {
 			maxGrade = max.finalGrade;
 			break;
 		case 5:
+			//formatting for print statments  specificlly for overall grades due to type changes 
 			type = "Overall";
 			cout << endl << type << " grade stats," << endl << '\t' << "min" << '\t' <<  min.getOverallGrade() << "% (" << min.fullName << ")" << endl;
 			cout << '\t' << "max" << '\t' <<  max.getOverallGrade() << "% (" << max.fullName << ")" << endl;
 			cout << '\t' << "avg" << '\t' << avgGrade << "%" << endl << endl;
 			return;
 	} // switch
+
+	//formatting for view stats 
 	cout << endl << type << " grade stats," << endl << '\t' << "min" << '\t' <<  minGrade << "% (" << min.fullName << ")" << endl;
 	cout << '\t' << "max" << '\t' <<  maxGrade << "% (" << max.fullName << ")" << endl;
 	cout << '\t' << "avg" << '\t' << avgGrade << "%" << endl << endl;
@@ -106,6 +111,7 @@ void printOption2(int gradeType) {
  * It also error checks if given an invalid option.
  */
 void instructorOption2() {
+	//formating for the menu of view stats 
 	string number;
 	cout << endl << "Grade types," << endl << '\t' << "1 - Project grade" << endl << '\t' << "2 - Quiz grade" << endl << '\t';
 	cout << "3 - Midterm grade" << endl << '\t' << "4 - Final grade" << endl << '\t' << "5 - Overall grade" << endl;
@@ -158,6 +164,7 @@ void instructorOption1() {
  */
 void promptInstructor() {
 	string option;
+	//formatting menu for instructor
 	cout << "Query options," << endl << '\t' << "1 - view grades of a student" << endl << '\t' << "2 - view stats" << endl;
 	cout << "Enter option number: ";
 	cin >> option;
@@ -244,6 +251,7 @@ void promptLogin(int isInstructor) {
  */
 void promptUser() {
 	string userType;
+	//formatting for initial menu for who to login 
 	cout << "User types," << endl << '\t' << "1 - Instructor" << endl << '\t' << "2 - Student" << endl << "Select a login user type or enter 3 to exit: ";
 	cin >> userType;
 	cout << endl;
@@ -269,7 +277,7 @@ int initializeInstructor(char *argv2) {
 	FILE * iFile;
 	int j = 0;
 	char c;
-	iFile = fopen(argv2, "r");
+	iFile = fopen(argv2, "r");//opening text file
 	if (iFile == NULL) {
 		cout << "Error: cannot parse instructors information from file " << string(argv2) << endl;
 		return 0;
@@ -400,4 +408,4 @@ int sti(string number) {
 	ss << number;
 	ss >> num;
 	return num;
-} // sti
+} // string
