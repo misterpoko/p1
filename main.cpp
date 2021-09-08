@@ -17,25 +17,34 @@ int initialize(char *argv1, char *argv2);
 void getWord(string *toChange, FILE * stream);
 int sti (string number);
 
-void printStudent(Student person) {
-	cout << person.username << " " << person.password << " " << person.getStudentName() << " " << person.getProjectGrade() << " " << person.getQuizGrade() << " " << person.getMidtermGrade() << " " << person.getFinalGrade() << endl;
-} // printStudent	
+void promptUser();
 
-void printInstructor(Instructor person) {
-	cout << person.uName << " " << person.pw << " " << person.getInstructorName() << endl;
-} // printInstructor
 int main(int argc, char **argv) {
 	initialize(argv[1], argv[2]);
-	for (int i = 0; i < 20; i++) {
-		printStudent(theStudents[i]);
-		cout << endl;
-	} // for
-	for (int i = 0; i < 3; i++) {
-		printInstructor(theInstructors[i]);
-		cout << endl;
-	} // for
+	promptUser();	
         return 0;
 } // main
+
+void promptUser() {
+	char userType;
+	cout << "User types," << endl << '\t' << "1 - Instructor" << endl << '\t' << "2 - Student" << endl << "Select a login user type or enter 3 to exit: ";
+	cin >> userType;
+	switch (userType) {
+		case '1':
+			//instructor
+			break;
+		case '2':
+			//student
+			break;
+		case '3':
+			//logout
+			break;
+		default:
+			cout << endl << "Invalid option. Please enter a valid option." << endl << endl;
+			promptUser();
+			return;
+	} // switch		
+} // promptUser
 
 int initializeInstructor(char *argv2) {
 	FILE * iFile;
