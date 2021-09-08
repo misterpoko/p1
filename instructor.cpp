@@ -5,7 +5,7 @@
 string fName;
 string uName;
 string pw;
-Student people[20];
+Student *people;
 
 /*
  * GradeTypes:
@@ -18,10 +18,11 @@ Student people[20];
 
 Instructor::Instructor(){}
 
-Instructor::Instructor(string username, string password, string firstName, string lastName) {
+Instructor::Instructor(string username, string password, string firstName, string lastName, Student *persons) {
 	uName = username;
 	pw = password;
 	fName = firstName + " " + lastName;
+	people = persons;
 } // Instructor
 
 string getInstructorName() {

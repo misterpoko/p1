@@ -7,7 +7,7 @@ class Instructor
 {
 	public:
 		Instructor();
-		Instructor(string one, string two, string three, string four);
+		Instructor(string one, string two, string three, string four, Student persons[20]);
         	string fullName;
         	bool login(string username, string password);
         	string getInstructorName();
@@ -15,6 +15,7 @@ class Instructor
         	Student getMinStudent(int gradeType);
         	Student getMaxStudent(int gradeType);
         	double getAvg(int gradeType);
+		void getStudentArray(Student firstStudents[20]);
 };
 
 #endif

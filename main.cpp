@@ -19,8 +19,7 @@ int sti (string number);
 
 void printStudent(Student person) {
 	cout << person.username << " " << person.password << " " << person.getStudentName() << " " << person.getProjectGrade() << " " << person.getQuizGrade() << " " << person.getMidtermGrade() << " " << person.getFinalGrade() << endl;
-} // printStudent
-	
+} // printStudent	
 
 int main(int argc, char **argv) {
 	initialize(argv[1], argv[2]);
@@ -66,9 +65,12 @@ int initializeInstructor(char *argv2) {
 			} // switch
 			temp = "";
 		} // for
-		theInstructors[j++] = Instructor(username, password, firstName, lastName);
+		theInstructors[j++] = Instructor(username, password, firstName, lastName, theStudents);
 	} // while
 	fclose(iFile);
+	/*for (int i = 0; i < 3; i++) {
+		theInstructors[i].getStudentArray(theStudents);
+	} // for*/
 	return 1;
 } // initializeInstructor
 
