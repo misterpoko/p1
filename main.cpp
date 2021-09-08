@@ -10,7 +10,7 @@
 using namespace std;
 Student theStudents[20];
 Instructor theInstructors[3];
-bool isInstructor = 0;
+bool isInstructor = 0; //which instructor it is.
 bool isLogin = 0;
 
 int initialize(char *argv1, char *argv2);
@@ -24,6 +24,12 @@ void promptStudent();
 void instructorOption1();
 void instructorOption2();
 
+/**
+ * This takes in arguments and creates the flow of methods. Shortcircuits if given bad files or not 2 arguments
+ * @param argc the amount of args
+ * @param argv the filenames
+ * @return whether or not the operation succeeded.
+ */
 int main(int argc, char **argv) {
 	if (argc != 3) {
 		cout << "Usage: main [instructors_file] [students_file]" << endl;
@@ -37,6 +43,10 @@ int main(int argc, char **argv) {
 	return 1;
 } // main
 
+/**
+ * This prints student information used in student option and instructor view of a singular student.
+ * @param person The student in question
+ */
 void printStudent(Student person) {
 	cout << endl;
 	cout << "Student name: " << person.fullName << endl << '\t' << "Project " << person.getProjectGrade() << "%" << endl;
@@ -45,6 +55,10 @@ void printStudent(Student person) {
 	cout << person.getOverallGrade() << "%" << endl << endl;
 } // printStudent
 
+/**
+ * This method prints the output for the viewstats command for the instructor.
+ * @param gradeType which grade type to print stats for
+ */
 void printOption2(int gradeType) {
 	string type;
 	Student min = theInstructors[isInstructor].getMinStudent(gradeType);
@@ -87,6 +101,10 @@ void printOption2(int gradeType) {
 	cout << '\t' << "avg" << '\t' << avgGrade << "%" << endl << endl;
 } // printOption2
 
+/**
+ * This method prints the viewstats option for instructor and directs its flow to print the results of the method using printOption2.
+ * It also error checks if given an invalid option.
+ */
 void instructorOption2() {
 	string number;
 	cout << endl << "Grade types," << endl << '\t' << "1 - Project grade" << endl << '\t' << "2 - Quiz grade" << endl << '\t';
@@ -114,7 +132,9 @@ void instructorOption2() {
 	} // if
 } // instructorOption2
 
-
+/**
+ * This method prints the viewstudent and errorchecks if given an invalid option.
+ */
 void instructorOption1() {
 	string su = ""; // student username
 	cout << endl << "Enter student username to view grades: ";
@@ -132,6 +152,10 @@ void instructorOption1() {
 	} // if
 } // instructorOption1
 
+/**
+ * This method is what follows after logging in. It gives the instructor 2 options of viewing stats and viewing a certain student.
+ * It also prints it.
+ */
 void promptInstructor() {
 	string option;
 	cout << "Query options," << endl << '\t' << "1 - view grades of a student" << endl << '\t' << "2 - view stats" << endl;
@@ -147,6 +171,10 @@ void promptInstructor() {
 	} // if
 } // promptInstructor
 
+/**
+ * This method prompts the student with the option to look at individual grades after logging in as a student.
+ * @param theStudent the student whose grades we can view
+ */
 void promptStudent(Student theStudent) {
 	string temp;
 	cout << "Do you want to view grades (y/n)? ";
@@ -160,6 +188,10 @@ void promptStudent(Student theStudent) {
 	} // if
 } // promptStudent
 
+/**
+ * This prompts for a login and error checks to see if they were using valid credentials.
+ * @param isInstructor gives if an instructor is attempting a log in and which one.
+ */
 void promptLogin(int isInstructor) {
 	string un;
 	string pw;
@@ -212,6 +244,7 @@ void promptUser() {
 	string userType;
 	cout << "User types," << endl << '\t' << "1 - Instructor" << endl << '\t' << "2 - Student" << endl << "Select a login user type or enter 3 to exit: ";
 	cin >> userType;
+	cout << endl;
 	if (!userType.compare("1")) {
 		promptLogin(1);
 	} else if (!userType.compare("2")) {

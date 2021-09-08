@@ -5,5 +5,7 @@ In order to clean all object file type in "make clean"
 
 in order to compile the code type in "make"
 
-To run the code type in "make run" and will be prompted with instructions
+To run the code type in "make run" to run using the instructors.txt and students.txt file
+
+to run using own files use "./main [instructor txt] [student txt]" 
 ~
