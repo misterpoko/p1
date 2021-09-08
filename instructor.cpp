@@ -46,11 +46,13 @@ string Instructor::getInstructorName() {
  * @param string username is students username 
  */
 Student Instructor::getStudent(string username) {
+	// loops through student array and compares the username to the array in hopes of finding the student.
 	for (int i = 0; i < 20; i++) {
 		if(!(people[i].username.compare(username))) {
 			return people[i];
 		} // if
 	} // for
+	//error checking for student that doesn't exist.
 	return Student("Not","Exist", "noUN", "pw", -1, -1, -1, -1);
 } // getStudent
 
@@ -62,6 +64,7 @@ Student Instructor::getStudent(string username) {
 Student Instructor::getMinStudent(int gradeType) {
 	Student min = people[0];
 	switch(gradeType) {
+		// simple sort to get min // *gets first instance of a min not the last
 		case 1:	
 			for (int i = 1; i < 20; i++) {
 				if (people[i].getProjectGrade() < min.getProjectGrade()) {
@@ -109,6 +112,7 @@ Student Instructor::getMinStudent(int gradeType) {
 Student Instructor::getMaxStudent(int gradeType) {
 	Student max = people[0];
 	switch(gradeType) {
+		//simple sort to get max student based on grade type // * gets the first max not last
 		case 1:	
 			for (int i = 1; i < 20; i++) {
 				if (people[i].getProjectGrade() > max.getProjectGrade()) {
@@ -156,6 +160,7 @@ Student Instructor::getMaxStudent(int gradeType) {
 double Instructor::getAvg(int gradeType) {
 	double sum = 0.0;
 	switch (gradeType) {
+		// sums 20 items based on gradeType and divides by 20
 		case 1:
 			for (int i = 0; i < 20; i++) {
 				sum += people[i].getProjectGrade();

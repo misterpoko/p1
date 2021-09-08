@@ -80,6 +80,7 @@ int Student::getFinalGrade() {
  */
 double Student::getOverallGrade() {
 	double sum = 0;
+	//how the grade is calculated
        	sum += (.3 * projectGrade);
        	sum += (.1 * quizGrade);
        	sum += (.2 * midtermGrade);
@@ -96,6 +97,7 @@ double Student::getOverallGrade() {
  * 
  */
 bool Student::login(string un, string pw) {
+	//returns if they compare to the same string for both username and password
 	if (!username.compare(un) && !password.compare(pw)) {
 		return true;
 	} // if
