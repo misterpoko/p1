@@ -18,12 +18,24 @@ void getWord(string *toChange, FILE * stream);
 int sti (string number);
 
 void promptUser();
+void promptLogin(int isInstructor);
 
 int main(int argc, char **argv) {
 	initialize(argv[1], argv[2]);
 	promptUser();	
         return 0;
 } // main
+
+void promptLogin(int isInstructor) {
+	string un;
+	string pw;
+	cout << "Enter credentials to login," << endl << '\t' << "Enter username: ";
+	cin >> un;
+	cout << endl << '\t' << "Enter password: ";
+	cin >> pw;
+	cout << endl << endl;
+} // promptLogin
+		
 
 void promptUser() {
 	char userType;
