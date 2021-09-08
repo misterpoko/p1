@@ -30,6 +30,74 @@ int main(int argc, char **argv) {
         return 0;
 } // main
 
+void printOption2(int gradeType) {
+	string type;
+	Student min = theInstructors[isInstructor].getMinStudent(gradeType);
+	Student max = theInstructors[isInstructor].getMaxStudent(gradeType);
+	int minGrade;
+	int maxGrade;
+	double avgGrade = theInstructors[isInstructor].getAvg(gradeType);
+	switch (gradeType) {
+		case 1:
+			type = "Project";
+			minGrade = min.projectGrade;
+			maxGrade = max.projectGrade;
+			break;
+		case 2:
+			type = "Quiz";
+			minGrade = min.quizGrade;
+			maxGrade = max.quizGrade;
+			break;
+		case 3:
+			type = "Midterm";
+			minGrade = min.midtermGrade;
+			maxGrade = max.midtermGrade;
+			break;
+		case 4: 
+			type = "Final";
+			minGrade = min.finalGrade;
+			maxGrade = max.finalGrade;
+			break;
+		case 5:
+			type = "Overall";
+			cout << type << " grade stats," << endl << '\t' << "min" << '\t' <<  min.getOverallGrade() << "% (" << min.fullName << ")" << endl;
+			cout << '\t' << "max" << '\t' <<  max.getOverallGrade() << "% (" << max.fullName << ")" << endl;
+			cout << '\t' << "avg" << '\t' << avgGrade << "%" << endl << endl;
+			return;
+	} // switch
+	cout << type << " grade stats," << endl << '\t' << "min" << '\t' <<  minGrade << "% (" << min.fullName << ")" << endl;
+	cout << '\t' << "max" << '\t' <<  maxGrade << "% (" << max.fullName << ")" << endl;
+	cout << '\t' << "avg" << '\t' << avgGrade << "%" << endl << endl;
+} // printOption2
+
+void instructorOption2() {
+	string number;
+	cout << endl << "Grade types," << endl << '\t' << "1 - Project grade" << endl << '\t' << "2 - Quiz grade" << endl << '\t';
+	cout << "3 - Midterm grade" << endl << '\t' << "4 - Final grade" << endl << '\t' << "5 - Overall grade" << endl;
+	cout << "Select a grade type to view stats: ";
+	cin >> number;
+	if (!number.compare("1")) {
+		printOption2(1);
+		promptUser();
+	} else if (!number.compare("2")) {
+		printOption2(2); 
+		promptUser();
+	} else if (!number.compare("3")) { 
+		printOption2(3); 
+		promptUser();
+	} else if (!number.compare("4")) { 
+		printOption2(4); 
+		promptUser();
+	} else if (!number.compare("5")) { 
+		printOption2(5); 
+		promptUser();
+	} else {
+		cout << "Invalid option. Please enter a valid option." << endl << endl;
+		instructorOption2();
+	} // if
+} // instructorOption2
+
+
 void instructorOption1() {
 	string su = ""; // student username
 	cout << endl << "Enter student username to view grades: ";
@@ -59,7 +127,7 @@ void promptInstructor() {
 	if (!option.compare("1")) {
 		instructorOption1();
 	} else if (!option.compare("2")) {
-		//something
+		instructorOption2();
 	} else {
 		cout << endl << "Invalid option. Please enter a valid option." << endl << endl;
 		promptInstructor();
