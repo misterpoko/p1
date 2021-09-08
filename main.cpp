@@ -77,12 +77,12 @@ void printOption2(int gradeType) {
 			break;
 		case 5:
 			type = "Overall";
-			cout << type << " grade stats," << endl << '\t' << "min" << '\t' <<  min.getOverallGrade() << "% (" << min.fullName << ")" << endl;
+			cout << endl << type << " grade stats," << endl << '\t' << "min" << '\t' <<  min.getOverallGrade() << "% (" << min.fullName << ")" << endl;
 			cout << '\t' << "max" << '\t' <<  max.getOverallGrade() << "% (" << max.fullName << ")" << endl;
 			cout << '\t' << "avg" << '\t' << avgGrade << "%" << endl << endl;
 			return;
 	} // switch
-	cout << type << " grade stats," << endl << '\t' << "min" << '\t' <<  minGrade << "% (" << min.fullName << ")" << endl;
+	cout << endl << type << " grade stats," << endl << '\t' << "min" << '\t' <<  minGrade << "% (" << min.fullName << ")" << endl;
 	cout << '\t' << "max" << '\t' <<  maxGrade << "% (" << max.fullName << ")" << endl;
 	cout << '\t' << "avg" << '\t' << avgGrade << "%" << endl << endl;
 } // printOption2
@@ -109,7 +109,7 @@ void instructorOption2() {
 		printOption2(5); 
 		promptUser();
 	} else {
-		cout << "Invalid option. Please enter a valid option." << endl << endl;
+		cout << endl << "Invalid option. Please enter a valid option." << endl;
 		instructorOption2();
 	} // if
 } // instructorOption2
@@ -151,6 +151,7 @@ void promptStudent(Student theStudent) {
 	string temp;
 	cout << "Do you want to view grades (y/n)? ";
 	cin >> temp;
+	cout << endl;
 	if (!temp.compare("y")) {
 		printStudent(theStudent);
 		promptUser();
