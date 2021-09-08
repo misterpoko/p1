@@ -7,5 +7,10 @@ in order to compile the code type in "make"
 
 To run the code type in "make run" to run using the instructors.txt and students.txt file
 
-to run using own files use "./main [instructor txt] [student txt]" 
+to run using own files use "./main [instructor txt] [student txt]" then follow instructions
+to use different options
+
+project is also on 
+https://github.com/misterpoko/p1
+ 
 ~
