@@ -146,6 +146,7 @@ void instructorOption1() {
 	cout << endl << "Enter student username to view grades: ";
 	cin >> su;
 	Student inQuestion = theInstructors[isInstructor].getStudent(su);
+	//gets student method creates a student if they don't exist so error checks by comparing usernames they should not be the same.
 	if (inQuestion.username != su) {
 		cout << endl << "Student username is not valid" << endl;
 		instructorOption1();
