@@ -25,9 +25,16 @@ void instructorOption1();
 void instructorOption2();
 
 int main(int argc, char **argv) {
-	initialize(argv[1], argv[2]);
-	promptUser();	
-        return 0;
+	if (argc != 3) {
+		cout << "Usage: main [instructors_file] [students_file]" << endl;
+		return 1;
+	} // if
+	if(initialize(argv[1], argv[2])) {
+		cout << "Parsing instructors and students information success." << endl << endl;
+		promptUser();	
+        	return 0;
+	} // if
+	return 1;
 } // main
 
 void printStudent(Student person) {
@@ -220,7 +227,7 @@ int initializeInstructor(char *argv2) {
 	char c;
 	iFile = fopen(argv2, "r");
 	if (iFile == NULL) {
-		cout << "instructors.txt does not exist" << endl;
+		cout << "Error: cannot parse instructors information from file " << string(argv2) << endl;
 		return 0;
 	} // if
 	string firstName;
@@ -262,7 +269,7 @@ int initializeStudent(char *argv1) {
 	FILE * sFile;	
 	sFile = fopen(argv1, "r");
 	if (sFile == NULL) {
-		cout << "students.txt does not exist" << endl;
+		cout << "Error: cannot parse students information from file " << string(argv1) << endl;
 		return 0;
 	} // if
 	string firstName;
