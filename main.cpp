@@ -66,7 +66,7 @@ int initializeInstructor(char *argv2) {
 			} // switch
 			temp = "";
 		} // for
-		//add instructor constructor lol
+		theInstructors[j++] = Instructor(username, password, firstName, lastName);
 	} // while
 	fclose(iFile);
 	return 1;
