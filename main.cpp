@@ -21,10 +21,17 @@ void printStudent(Student person) {
 	cout << person.username << " " << person.password << " " << person.getStudentName() << " " << person.getProjectGrade() << " " << person.getQuizGrade() << " " << person.getMidtermGrade() << " " << person.getFinalGrade() << endl;
 } // printStudent	
 
+void printInstructor(Instructor person) {
+	cout << person.uName << " " << person.pw << " " << person.getInstructorName() << endl;
+} // printInstructor
 int main(int argc, char **argv) {
 	initialize(argv[1], argv[2]);
 	for (int i = 0; i < 20; i++) {
 		printStudent(theStudents[i]);
+		cout << endl;
+	} // for
+	for (int i = 0; i < 3; i++) {
+		printInstructor(theInstructors[i]);
 		cout << endl;
 	} // for
         return 0;

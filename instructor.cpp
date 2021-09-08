@@ -25,11 +25,11 @@ Instructor::Instructor(string username, string password, string firstName, strin
 	people = persons;
 } // Instructor
 
-string getInstructorName() {
+string Instructor::getInstructorName() {
 	return fName;
 } // getInstructorName
 
-Student getStudent(string username) {
+Student Instructor::getStudent(string username) {
 	for (int i = 0; i < 20; i++) {
 		if(!(people[i].username.compare(username))) {
 			return people[i];
@@ -38,7 +38,7 @@ Student getStudent(string username) {
 	return Student("Not","Exist", "noUN", "pw", -1, -1, -1, -1);
 } // getStudent
 
-Student getMinStudent(int gradeType) {
+Student Instructor::getMinStudent(int gradeType) {
 	Student min = people[0];
 	switch(gradeType) {
 		case 1:	
@@ -80,7 +80,7 @@ Student getMinStudent(int gradeType) {
 	return min;
 } // getMinStudent
 
-Student getMaxStudent(int gradeType) {
+Student Instructor::getMaxStudent(int gradeType) {
 	Student max = people[0];
 	switch(gradeType) {
 		case 1:	
@@ -122,7 +122,7 @@ Student getMaxStudent(int gradeType) {
 	return max;
 } // getMaxStudent
 
-double getAvg(int gradeType) {
+double Instructor::getAvg(int gradeType) {
 	double sum = 0.0;
 	switch (gradeType) {
 		case 1:
@@ -154,7 +154,7 @@ double getAvg(int gradeType) {
 	return sum/20;
 } // getAvg
 
-bool login(string username, string password) {
+bool Instructor::login(string username, string password) {
 	if (username == uName && password == pw) {
 		return 1;
 	} // if

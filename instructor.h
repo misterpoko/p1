@@ -8,7 +8,10 @@ class Instructor
 	public:
 		Instructor();
 		Instructor(string one, string two, string three, string four, Student persons[20]);
-        	string fullName;
+        	string fName;
+		string uName;
+		string pw;
+		Student *people;
         	bool login(string username, string password);
         	string getInstructorName();
         	Student getStudent(string username);
